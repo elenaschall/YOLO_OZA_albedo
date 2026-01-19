@@ -1,0 +1,18 @@
+{
+	"train_path" : "/isibhv/projects/p_OZA_AI/biodcase_train_vali/train_test",
+	"val_path" : "/isibhv/projects/p_OZA_AI/biodcase_train_vali/validation_test",
+	"test_path" : "",
+    
+    "duration" : 300,
+    "advance_in_percent" : 0.95,
+    "desired_fs" : 250,
+    "channel" : 0,
+	"log": false,
+	"color": false,
+
+	"nfft" : 1024,
+    "win_len" : 590,
+    "hop_len" : 24,
+
+    "class_encoding": {"bma": 0,"bmb": 0, "bmz": 0, "bmd": 1, "bpd": 1, "bp20": 2, "bp20plus": 2}
+}

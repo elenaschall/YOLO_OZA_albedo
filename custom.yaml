@@ -1,0 +1,17 @@
+path:  '/Users/eschall/Documents/CNN+Noise'
+train: '/Users/eschall/Documents/CNN+Noise/biodcase_development_set/train'
+test: '/Users/eschall/Documents/CNN+Noise/biodcase_development_set/validation'
+val: '/Users/eschall/Documents/CNN+Noise/biodcase_development_set/validation'
+
+#classes names
+nc: 7
+
+#replace all class names list with your classes names
+names:
+  0: bma
+  1: bmb
+  2: bmz
+  3: bmd
+  4: bpd
+  5: bp20
+  6: bp20plus

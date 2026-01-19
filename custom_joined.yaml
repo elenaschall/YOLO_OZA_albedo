@@ -1,0 +1,13 @@
+path:  '/albedo/work/projects/p_OZA_AI'
+train: '/albedo/work/projects/p_OZA_AI/YOLO/train_test'
+test: '/albedo/work/projects/p_OZA_AI/YOLO/train_test'
+val: '/albedo/work/projects/p_OZA_AI/YOLO/train_test'
+
+#classes names
+nc: 3
+
+#replace all class names list with your classes names
+names:
+  0: bmabz
+  1: d
+  2: bp

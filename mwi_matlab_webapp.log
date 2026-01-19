@@ -1,0 +1,12 @@
+2025-06-26 12:59:40,851 - MATLABProxyApp - INFO - Initializing Jupyter MATLAB Proxy
+2025-06-26 12:59:40,852 - MATLABProxyApp - DEBUG - Icon_path:  /albedo/soft/sw/conda-sw/jupyterhub-3.1.1/lib/python3.11/site-packages/jupyter_matlab_proxy/icon_open_matlab.svg
+2025-06-26 12:59:40,852 - MATLABProxyApp - DEBUG - Launch Command: matlab-proxy-app
+2025-06-26 12:59:40,852 - MATLABProxyApp - DEBUG - Extension Name: Jupyter
+2025-07-08 11:56:28,340 - MATLABProxyApp - INFO - Initializing Jupyter MATLAB Proxy
+2025-07-08 11:56:28,340 - MATLABProxyApp - DEBUG - Icon_path:  /albedo/soft/sw/conda-sw/jupyterhub-3.1.1/lib/python3.11/site-packages/jupyter_matlab_proxy/icon_open_matlab.svg
+2025-07-08 11:56:28,340 - MATLABProxyApp - DEBUG - Launch Command: matlab-proxy-app
+2025-07-08 11:56:28,340 - MATLABProxyApp - DEBUG - Extension Name: Jupyter
+2025-07-10 10:17:48,419 - MATLABProxyApp - INFO - Initializing Jupyter MATLAB Proxy
+2025-07-10 10:17:48,419 - MATLABProxyApp - DEBUG - Icon_path:  /albedo/soft/sw/conda-sw/jupyterhub-3.1.1/lib/python3.11/site-packages/jupyter_matlab_proxy/icon_open_matlab.svg
+2025-07-10 10:17:48,419 - MATLABProxyApp - DEBUG - Launch Command: matlab-proxy-app
+2025-07-10 10:17:48,419 - MATLABProxyApp - DEBUG - Extension Name: Jupyter
