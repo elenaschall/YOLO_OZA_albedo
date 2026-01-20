@@ -24,7 +24,7 @@ random.seed(42)
 
 
 class YOLODataset:
-    def __init__(self, config, path_to_dataset):
+    def __init__(self, config, path_to_dataset, path_for_data):
         # Spectrogram settings
         self.duration = config['duration']
         self.overlap = config['advance_in_percent']  # advance of the chunks in %
@@ -45,8 +45,9 @@ class YOLODataset:
         self.path_to_dataset = pathlib.Path(path_to_dataset)
         self.wavs_folder = self.path_to_dataset.joinpath('audio')
         self.annotations_folder = self.path_to_dataset.joinpath('annotations')
-        self.images_folder = pathlib.Path('/albedo/work/projects/p_OZA_AI/train_test/images')
-        self.labels_folder = pathlib.Path('/albedo/work/projects/p_OZA_AI/train_test/labels')
+        self.path_for_data = pathlib.Path(path_for_data)
+        self.images_folder = self.path_for_data.joinpath('images')
+        self.labels_folder = self.path_for_data.joinpath('labels')
         if not self.images_folder.exists():
             os.mkdir(self.images_folder)
             os.mkdir(self.labels_folder)
@@ -219,7 +220,7 @@ class YOLODataset:
                     #     print(chunk_selection)
                     #     print(start_seconds, end_seconds)
                     chunk_selection = chunk_selection.replace(to_replace=class_encoding).infer_objects(copy=False)
-                    new_name = dataset_name + '_' + wav_name.replace('.wav', '_%s' % i)
+                    new_name = dataset_name + '_' + wav_name.replace('.wav', '_%s' % start_seconds)
 
                     if len(chunk_selection) > 0:
                         labels_indices.append(new_name)
@@ -326,9 +327,10 @@ if __name__ == '__main__':
     f = open(config_path)
     config = json.load(f)
 
-    path_to_dataset = config['train_path']
+    path_to_dataset = config['train_data_path']
+    path_for_data = config['train_path']
 
-    ds = YOLODataset(config, path_to_dataset)
+    ds = YOLODataset(config, path_to_dataset, path_for_data)
     #if train_mode:
     ds.create_partial_dataset(class_encoding=config['class_encoding'])
     #if test mode:

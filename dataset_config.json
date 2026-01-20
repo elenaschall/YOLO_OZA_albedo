@@ -1,6 +1,10 @@
 {
-	"train_path" : "/isibhv/projects/p_OZA_AI/biodcase_train_vali/train_test",
-	"val_path" : "/isibhv/projects/p_OZA_AI/biodcase_train_vali/validation_test",
+	"train_data_path" : "/isibhv/projects/p_OZA_AI/biodcase_train_vali/train",
+	"val_data_path" : "/isibhv/projects/p_OZA_AI/biodcase_train_vali/validation",
+	"test_data_path" : "",
+
+    "train_path" : "/albedo/work/projects/p_OZA_AI/YOLO/Data/train",
+	"val_path" : "/albedo/work/projects/p_OZA_AI/YOLO/Data/validation",
 	"test_path" : "",
     
     "duration" : 300,
@@ -10,9 +14,9 @@
 	"log": false,
 	"color": false,
 
-	"nfft" : 1024,
-    "win_len" : 590,
-    "hop_len" : 24,
+	"nfft" : 2048,
+    "win_len" : 512,
+    "hop_len" : 21,
 
     "class_encoding": {"bma": 0,"bmb": 0, "bmz": 0, "bmd": 1, "bpd": 1, "bp20": 2, "bp20plus": 2}
 }
