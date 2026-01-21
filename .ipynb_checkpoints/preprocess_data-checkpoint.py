@@ -91,12 +91,12 @@ class YOLODataset:
         for dataset, indices_dataset in indices_per_deployment.items():
             label_indices = indices_dataset['labels']
             background_indices = indices_dataset['background']
-            if len(label_indices) >= len(background_indices):
+                        if len(label_indices) >= len(background_indices):
                 n_labels = min(len(label_indices), len(background_indices))
-                print(f'There are more labeled spectrograms than background spectrograms, therefore {n_labels} background spectrograms are in the dataset {dataset}')
+                print(f'There are more labeled spectrograms than background spectrograms, therefore {round(100/(len(label_indices) + n_labels) * n_labels)}% background spectrograms are in the dataset {dataset}')
             else:
                 n_labels = min(3 * len(label_indices), len(background_indices))
-                print(f'There are {n_labels} background spectrograms in the dataset {dataset}')
+                print(f'There are {round(100/(len(label_indices) + n_labels) * n_labels)}% background spectrograms in the dataset {dataset}')
 
             selected_background = random.sample(background_indices, n_labels)
             indices_per_deployment[dataset]['selected_background'] = selected_background
