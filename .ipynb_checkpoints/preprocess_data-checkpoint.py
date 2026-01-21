@@ -91,7 +91,7 @@ class YOLODataset:
         for dataset, indices_dataset in indices_per_deployment.items():
             label_indices = indices_dataset['labels']
             background_indices = indices_dataset['background']
-                        if len(label_indices) >= len(background_indices):
+            if len(label_indices) >= len(background_indices):
                 n_labels = min(len(label_indices), len(background_indices))
                 print(f'There are more labeled spectrograms than background spectrograms, therefore {round(100/(len(label_indices) + n_labels) * n_labels)}% background spectrograms are in the dataset {dataset}')
             else:
@@ -239,29 +239,29 @@ class YOLODataset:
                     i += self.overlap
                 pbar.update(1)
 
-                # save audio snippet information for wav files without annotations - only backgrounds
-                files = glob.glob(str(self.wavs_folder.joinpath(dataset_name)) + '/**/*.wav', recursive=True)
-                list_of_empty_files = set(files) ^ set(list_of_used_files)
-                for wav_file_path in list_of_empty_files:
-                    dataset_name = pathlib.Path(wav_file_path).parts[-2]
-                    wav_name = pathlib.Path(wav_file_path).parts[-1]
-                    waveform_info = torchaudio.info(wav_file_path)
+            # save audio snippet information for wav files without annotations - only backgrounds
+            files = glob.glob(str(self.wavs_folder.joinpath(dataset_name)) + '/**/*.wav', recursive=True)
+            list_of_empty_files = set(files) ^ set(list_of_used_files)
+            for wav_file_path in list_of_empty_files:
+                dataset_name = pathlib.Path(wav_file_path).parts[-2]
+                wav_name = pathlib.Path(wav_file_path).parts[-1]
+                waveform_info = torchaudio.info(wav_file_path)
 
-                    i = 0.0
-                    while (i * self.duration + self.duration / 2) < (
-                            waveform_info.num_frames / waveform_info.sample_rate):
-                        start_seconds = i * self.duration
-                        new_name = dataset_name + '_' + wav_name.replace('.wav', '_%s' % start_seconds)
-                        background_indices.append(new_name)
-                        label_path = self.labels_folder.joinpath('backgrounds', new_name + '.txt')
-                        chunk_selection[[
-                            'annotation',
-                            'x',
-                            'y',
-                            'width',
-                            'height']].iloc[:0].to_csv(label_path, header=None, index=None, sep=' ', mode='w')
-                        # Add the station if the image adds it as well!
-                        i += self.overlap
+                i = 0.0
+                while (i * self.duration + self.duration / 2) < (
+                        waveform_info.num_frames / waveform_info.sample_rate):
+                    start_seconds = i * self.duration
+                    new_name = dataset_name + '_' + wav_name.replace('.wav', '_%s' % start_seconds)
+                    background_indices.append(new_name)
+                    label_path = self.labels_folder.joinpath('backgrounds', new_name + '.txt')
+                    chunk_selection[[
+                        'annotation',
+                        'x',
+                        'y',
+                        'width',
+                        'height']].iloc[:0].to_csv(label_path, header=None, index=None, sep=' ', mode='w')
+                    # Add the station if the image adds it as well!
+                    i += self.overlap
             
             indices_per_deployment[dataset_name] = {'background': background_indices, 'labels': labels_indices}
             pbar.close()
