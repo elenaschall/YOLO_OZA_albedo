@@ -327,8 +327,8 @@ if __name__ == '__main__':
     f = open(config_path)
     config = json.load(f)
 
-    path_to_dataset = config['train_data_path']
-    path_for_data = config['train_path']
+    path_to_dataset = config['val_data_path']
+    path_for_data = config['val_path']
 
     ds = YOLODataset(config, path_to_dataset, path_for_data)
     #if train_mode:

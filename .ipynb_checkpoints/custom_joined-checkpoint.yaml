@@ -1,7 +1,7 @@
-path:  '/albedo/work/projects/p_OZA_AI'
-train: '/albedo/work/projects/p_OZA_AI/train_test'
-test: '/albedo/work/projects/p_OZA_AI/train_test'
-val: '/albedo/work/projects/p_OZA_AI/train_test'
+path:  '/albedo/work/projects/p_OZA_AI/YOLO'
+train: '/albedo/work/projects/p_OZA_AI/YOLO/Data/train'
+test: '/albedo/work/projects/p_OZA_AI/YOLO/train_test'
+val: '/albedo/work/projects/p_OZA_AI/YOLO/Data/validation'
 
 #classes names
 nc: 3

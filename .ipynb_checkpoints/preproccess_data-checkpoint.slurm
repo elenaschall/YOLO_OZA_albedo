@@ -1,9 +1,9 @@
 #!/bin/bash -e
-#SBATCH --job-name=YOLO_biodcase_dataset_creation
+#SBATCH --job-name=YOLO_biodcase_validation_set_creation
 #SBATCH --account=po_oza.p_oza_ai
 #SBATCH --partition=smp
-#SBATCH --time=48:00:00
-#SBATCH --qos=48h
+#SBATCH --time=12:00:00
+#SBATCH --qos=12h
 #SBATCH --ntasks=1
 #SBATCH --mail-user=elena.schall@awi.de
 #SBATCH --mail-type=ALL     
