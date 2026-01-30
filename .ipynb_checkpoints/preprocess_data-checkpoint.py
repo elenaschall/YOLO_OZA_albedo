@@ -28,15 +28,18 @@ class YOLODataset:
         # Spectrogram settings
         self.duration = config['duration']
         self.overlap = config['advance_in_percent']  # advance of the chunks in %
+        self.fs = config['fs']
         self.desired_fs = config['desired_fs']
+        self.freq_min = config['freq_min']
+        self.freq_max = config['freq_max']
         self.channel = config['channel']
         self.log = config['log']
         self.color = config['color']
 
         self.nfft = config['nfft']
         self.win_len = config['win_len']
-        self.hop_len = config['hop_len']
-        self.win_overlap = self.win_len - self.hop_len
+        self.win_overlap = config['win_overlap'] #in %
+        self.win_overlap = self.win_len/100*self.win_overlap
 
         # Get the color map by name:
         #self.cmap = plt.get_cmap(config['cmap'])
@@ -54,7 +57,7 @@ class YOLODataset:
             os.mkdir(self.labels_folder.joinpath('backgrounds'))
 
         self.F_MIN = 0
-        self.blocksize = int(self.duration * self.desired_fs)
+        self.blocksize = int(self.duration * self.fs)
         self.config = config
 
     def __setitem__(self, key, value):
@@ -140,7 +143,9 @@ class YOLODataset:
                 i += self.overlap
 
     def create_chunk_spectrogram(self, chunk):
-        sos = scipy.signal.iirfilter(20, [5, 124], rp=None, rs=None, btype='band',
+        if fs != self.desired_fs:
+            chunk = scipy.signal.decimate(chunk,int(fs/self.desired_fs))
+        sos = scipy.signal.iirfilter(4, self.freq_min, rp=None, rs=None, btype='high',
                                      analog=False, ftype='butter', output='sos',
                                      fs=self.desired_fs)
         chunk = scipy.signal.sosfilt(sos, chunk)
@@ -150,7 +155,7 @@ class YOLODataset:
                                              detrend=False,
                                              return_onesided=True, scaling='density', axis=-1,
                                              mode='magnitude')
-        sxx = 1 - sxx
+        sxx = 1 - 10*np.log10(sxx)
         per = np.percentile(sxx.flatten(), 98)
         sxx = (sxx - sxx.min()) / (per - sxx.min())
         sxx[sxx > 1] = 1
@@ -327,8 +332,8 @@ if __name__ == '__main__':
     f = open(config_path)
     config = json.load(f)
 
-    path_to_dataset = config['train_data_path']
-    path_for_data = config['train_path']
+    path_to_dataset = config['val_data_path']
+    path_for_data = config['val_path']
 
     ds = YOLODataset(config, path_to_dataset, path_for_data)
     #if train_mode:

@@ -1,0 +1,7 @@
+SLURM_JOBID:         41815232
+SLURM_ARRAY_TASK_ID: 
+SLURM_ARRAY_JOB_ID:  
+There are 71% background spectrograms in the dataset casey2017
+There are 74% background spectrograms in the dataset kerguelen2015
+There are 58% background spectrograms in the dataset kerguelen2014
+Creating spectrograms...

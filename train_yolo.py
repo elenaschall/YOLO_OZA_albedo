@@ -4,6 +4,7 @@ except ModuleNotFoundError:
     comet_ml = None
 import yaml
 import torch
+torch.cuda.empty_cache()
 from ultralytics import YOLO
 import os
 #import dvc.api
@@ -51,7 +52,9 @@ def run():
         'erasing': 0,
         'crop_fraction': 0,
     }
-    model.train(epochs=20, batch=32, data=YAML_FILE,
+    torch.cuda.memory_summary(device=None, abbreviated=False)
+
+    model.train(epochs=20, batch=8, data=YAML_FILE, device=[0,1],
                 project=config['path'] + '/runs/' + run_name, resume=False,plots=True, **best_params)
 
     if "COMET_API_KEY" in os.environ and comet_ml is not None:

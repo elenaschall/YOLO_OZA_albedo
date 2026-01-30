@@ -1,0 +1,14 @@
+artifact_uri: /albedo/work/projects/p_OZA_AI/YOLO/Code/runs/mlflow/417349920177002931/e9e6566d0da84b8f98604d4394a116ec/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '417349920177002931'
+lifecycle_stage: active
+run_id: e9e6566d0da84b8f98604d4394a116ec
+run_name: train5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1769603807196
+status: 1
+tags: []
+user_id: eschall
