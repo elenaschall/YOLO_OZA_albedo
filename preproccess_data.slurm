@@ -1,5 +1,5 @@
 #!/bin/bash -e
-#SBATCH --job-name=YOLO_biodcase_validation_set_creation_2
+#SBATCH --job-name=YOLO_biodcase_test_set_creation_30s
 #SBATCH --account=po_oza.p_oza_ai
 #SBATCH --partition=smp
 #SBATCH --time=12:00:00

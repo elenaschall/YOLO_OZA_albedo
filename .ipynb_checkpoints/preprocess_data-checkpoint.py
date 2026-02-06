@@ -128,7 +128,7 @@ class YOLODataset:
 
                     if len(chunk) < self.blocksize:
                         chunk = F_general.pad(chunk, (0, self.blocksize - len(chunk)))
-                    img, f = self.create_chunk_spectrogram(chunk)
+                    img, f = self.create_chunk_spectrogram(chunk, fs)
 
                     if self.log:
                         fig, ax = plt.subplots()
@@ -142,7 +142,7 @@ class YOLODataset:
                     plt.close()
                 i += self.overlap
 
-    def create_chunk_spectrogram(self, chunk):
+    def create_chunk_spectrogram(self, chunk, fs):
         if fs != self.desired_fs:
             chunk = scipy.signal.decimate(chunk,int(fs/self.desired_fs))
         sos = scipy.signal.iirfilter(4, self.freq_min, rp=None, rs=None, btype='high',
@@ -332,8 +332,8 @@ if __name__ == '__main__':
     f = open(config_path)
     config = json.load(f)
 
-    path_to_dataset = config['val_data_path']
-    path_for_data = config['val_path']
+    path_to_dataset = config['train_data_path']
+    path_for_data = config['train_path']
 
     ds = YOLODataset(config, path_to_dataset, path_for_data)
     #if train_mode:

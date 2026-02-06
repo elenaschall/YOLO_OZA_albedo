@@ -7,9 +7,9 @@
 	"val_path" : "/albedo/work/projects/p_OZA_AI/YOLO/Data/validation",
 	"test_path" : "",
     
-    "duration" : 120,
-    "advance_in_percent" : 0.95,
-    "fs" : 5333,
+    "duration" : 30,
+    "advance_in_percent" : 0.75,
+    "fs" : 250,
     "desired_fs" : 250,
     "freq_min": 5,
     "freq_max": 125,
@@ -17,9 +17,9 @@
 	"log": false,
 	"color": false,
 
-	"nfft" : 4096,
-    "win_len" : 512,
-    "win_overlap" : 98,
+	"nfft" : 1300,
+    "win_len" : 300,
+    "win_overlap" : 96,
 
     "class_encoding": {"bma": 0,"bmb": 0, "bmz": 0, "bmd": 1, "bpd": 1, "bp20": 2, "bp20plus": 2}
 }

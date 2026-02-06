@@ -1,6 +1,7 @@
 import json
 from ultralytics import YOLO
 import yaml
+import dvc.api
 
 import preprocess_data
 
@@ -12,7 +13,7 @@ def predict(ds, model_path_input, conf=0.1):
         model = YOLO(model_path)
         if ds.images_folder.exists():
             results_list = model(source=str(ds.images_folder),
-                                 project=str(ds.path_to_dataset),
+                                 project=str(ds.path_for_data),
                                  name=predictions_folder.name,
                                  stream=True,
                                  save=False, show=False, save_conf=True, save_txt=True, conf=conf,
@@ -27,8 +28,8 @@ def predict(ds, model_path_input, conf=0.1):
 
 
 if __name__ == '__main__':
-    path_to_dataset = '/isibhv/projects/p_OZA_AI/biodcase_train_vali/train_test'
-    model_path_input = '/albedo/work/projects/p_OZA_AI/runs/biodcase_baseline/train/yolo11n.pt'
+    path_to_dataset = '/albedo/work/projects/p_OZA_AI/YOLO/Data/validation'
+    model_path_input = '/albedo/work/projects/p_OZA_AI/YOLO/runs/biodcase_baseline/train9/weights/best.pt'
 
     config_path = './dataset_config.json'
     f = open(config_path)
@@ -37,6 +38,6 @@ if __name__ == '__main__':
     with open('./custom_joined.yaml', 'r') as file:
         yolo_config = yaml.safe_load(file)
 
-    yolo_ds = preprocess_data.YOLODataset(config, path_to_dataset)
+    yolo_ds = preprocess_data.YOLODataset(config, path_to_dataset,path_to_dataset)
     output_folder = predict(yolo_ds,model_path_input)
     yolo_ds.convert_yolo_detections_to_csv(output_folder, reverse_class_encoding=yolo_config['names'])

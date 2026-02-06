@@ -34,8 +34,8 @@ def run():
     # train the model
     best_params = {
         'iou': 0.3,
-        'imgsz': 3548,
-        'rect': True,
+        'imgsz': 640,
+        'rect': False,
         'hsv_s': 0,
         'hsv_v':  0,
         'degrees': 0,
@@ -54,7 +54,7 @@ def run():
     }
     torch.cuda.memory_summary(device=None, abbreviated=False)
 
-    model.train(epochs=20, batch=8, data=YAML_FILE, device=[0,1],
+    model.train(epochs=20, batch=32, data=YAML_FILE, device=[0,1],
                 project=config['path'] + '/runs/' + run_name, resume=False,plots=True, **best_params)
 
     if "COMET_API_KEY" in os.environ and comet_ml is not None:
