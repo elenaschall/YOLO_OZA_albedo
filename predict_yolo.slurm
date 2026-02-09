@@ -1,5 +1,5 @@
 #!/bin/bash -e
-#SBATCH --job-name=YOLO_biodcase_baseline_predict_vali
+#SBATCH --job-name=YOLO_biodcase_baseline_predict_test_30s
 #SBATCH --account=po_oza.p_oza_ai
 #SBATCH -p gpu
 #SBATCH --gpus=a100:2                 # allocate 2 (out of 4) A100 GPUs; to get 2 (out of 2) A40 GPUs use --gpus=a40:2

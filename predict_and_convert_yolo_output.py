@@ -28,8 +28,8 @@ def predict(ds, model_path_input, conf=0.1):
 
 
 if __name__ == '__main__':
-    path_to_dataset = '/albedo/work/projects/p_OZA_AI/YOLO/Data/validation'
-    model_path_input = '/albedo/work/projects/p_OZA_AI/YOLO/runs/biodcase_baseline/train9/weights/best.pt'
+    path_to_dataset = '/albedo/work/projects/p_OZA_AI/YOLO/Data/test'
+    model_path_input = '/albedo/work/projects/p_OZA_AI/YOLO/runs/biodcase_baseline/train10/weights/best.pt'
 
     config_path = './dataset_config.json'
     f = open(config_path)
